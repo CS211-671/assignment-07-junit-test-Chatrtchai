@@ -1,5 +1,6 @@
 package ku.cs.models;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,4 +24,17 @@ class UserTest {
         boolean actual = user.validatePassword("plain-p@ssw0rd");
         assertTrue(actual);
     }
+
+    @Test
+    void testSetPassword() {
+        User user = new User("user01");
+        user.setPassword("plain-p@ssw0rd");
+
+        String unexpected = "plain-p@ssw0rd";
+        String actual = user.getPassword();
+
+        // Test for ensure that password it encrypted?
+        assertNotEquals(unexpected, actual);
+    }
+
 }
