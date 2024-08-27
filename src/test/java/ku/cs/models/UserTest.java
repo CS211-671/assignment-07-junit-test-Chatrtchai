@@ -26,6 +26,7 @@ class UserTest {
     }
 
     @Test
+    @DisplayName("Password should be Encrypted")
     void testSetPassword() {
         User user = new User("user01");
         user.setPassword("plain-p@ssw0rd");
