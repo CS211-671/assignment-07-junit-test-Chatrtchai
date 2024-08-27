@@ -16,11 +16,42 @@ class StudentListTest {
     }
 
     @Test
-    @DisplayName("User should be found in UserList")
-    public void testFindStudentById() {
+    @DisplayName("Add User to Userlist")
+    public void testaddNewStudent() {
+        studentList.addNewStudent("6610401951", "Chatrtchai Chotsawat");
+        studentList.addNewStudent("6610601372", "Suwitchaya Makrak");
 
+        assertEquals(2, studentList.getStudents().size());
     }
 
+    @Test
+    @DisplayName("Find User by ID")
+    public void testfindStudentById() {
+        studentList.addNewStudent("6610401951", "Chatrtchai Chotsawat");
+        Student student =  studentList.findStudentById("6610401951");
 
+        assertNotNull(student);
+    }
+
+    @Test
+    @DisplayName("Add score by ID")
+    public void testgiveScoreToId() {
+        studentList.addNewStudent("6610601372", "Suwitchaya Makrak", 0);
+        studentList.giveScoreToId("6610601372", 10);
+
+        assertEquals(10, studentList.findStudentById("6610601372").getScore());
+    }
+
+    @Test
+    @DisplayName("View Grade by ID")
+    public void testviewGradeOfId() {
+        studentList.addNewStudent("6610401951", "Chatrtchai Chotsawat", 100);
+
+        String expected = "A";
+        String actual = studentList.viewGradeOfId("6610401951");
+
+        assertEquals(expected, actual);
+
+    }
 
 }
